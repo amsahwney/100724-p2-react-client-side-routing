@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function NewAnimalForm({ animals, setAnimals }) {
+function NewAnimalForm() {
+    
+    const navigate = useNavigate()
 
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
@@ -25,13 +28,8 @@ function NewAnimalForm({ animals, setAnimals }) {
                 body: JSON.stringify(newAnimal)
             })
 
-            const data = await response.json()
-
-            const updatedAnimals = [...animals, data]
-    
-            setAnimals(updatedAnimals)
-
-            resetForm()
+            navigate('/app')
+           
         } catch (error) {
             console.error(error)
             alert("Something went wrong...")
